@@ -11,15 +11,21 @@ pub fn translate(
 ) -> Result<String, Box<dyn Error>> {
     let client = reqwest::blocking::ClientBuilder::new().build()?;
 
-    let mut url = needs["instance_url"].clone();
-    if url.is_empty() {
-        url = String::from("https://translate.argosopentech.com/");
-        // If URL is not specified, use the default URL
-    }
+    let url = match needs.get("instance_url") {
+        Some(_) => {
+            let raw_url = needs.get("instance_url").unwrap();
+            if !raw_url.starts_with("http") {
+                format!("https://{raw_url}")
+            } else {
+                raw_url.to_string()
+            }
+        }
 
-    if !url.starts_with("http") {
-        url = format!("https://{}", url);
-    }
+        None => {
+            println!("Instance URL is not specified, use translate.argosopentech.com");
+            String::from("https://translate.argosopentech.com/")
+        }
+    };
 
     let mut body = HashMap::new();
     body.insert("q", text);
