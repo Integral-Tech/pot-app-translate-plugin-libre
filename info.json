@@ -1,13 +1,12 @@
 {
-  "id": "[plugin].com.pot-app.lingva",
+  "id": "[plugin].com.pot-app.libretranslate",
   "plugin_type": "translate",
-  "icon": "lingva.svg",
-  "display": "Lingva",
-  "needs": [{ "key": "requestPath", "display": "请求地址" }],
+  "icon": "libretranslate.png",
+  "display": "LibreTranslate",
+  "needs": [{ "key": "instance_url", "display": "实例 URL" }],
   "language": {
     "auto": "auto",
     "zh_cn": "zh",
-    "zh_tw": "zh_HANT",
     "en": "en",
     "ja": "ja",
     "ko": "ko",
@@ -18,14 +17,9 @@
     "it": "it",
     "tr": "tr",
     "pt": "pt",
-    "pt_br": "pt",
-    "vi": "vi",
+    "pt_pt": "pt",
     "id": "id",
-    "th": "th",
-    "ms": "ms",
     "ar": "ar",
     "hi": "hi",
-    "mn_cy": "mn",
-    "km": "km"
   }
 }

@@ -1,39 +1,50 @@
 use serde_json::Value;
 use std::collections::HashMap;
 use std::error::Error;
-use urlencoding::encode;
 
 #[no_mangle]
 pub fn translate(
-    text: &str, // 待翻译文本
-    from: &str, // 源语言
-    to: &str,   // 目标语言
-    // (pot会根据info.json 中的 language 字段传入插件需要的语言代码，无需再次转换)
-    needs: HashMap<String, String>, // 插件需要的其他参数,由info.json定义
+    text: &str,                     // Text to be translated
+    from: &str,                     // Source Language
+    to: &str,                       // Target Language
+    needs: HashMap<String, String>, // Other arguments defined in info.json
 ) -> Result<String, Box<dyn Error>> {
     let client = reqwest::blocking::ClientBuilder::new().build()?;
 
-    let mut url = needs["requestPath"].clone();
+    let mut url = needs["instance_url"].clone();
+    if url.is_empty() {
+        url = String::from("https://translate.argosopentech.com/");
+        // If URL is not specified, use the default URL
+    }
+
     if !url.starts_with("http") {
         url = format!("https://{}", url);
     }
-    let plain_text = text.replace("/", "@@");
-    let encode_text = encode(plain_text.as_str());
+
+    let mut body = HashMap::new();
+    body.insert("q", text);
+    body.insert("source", from);
+    body.insert("target", to);
 
     let res: Value = client
-        .get(format!("{url}/api/v1/{from}/{to}/{encode_text}"))
+        .post(format!("{url}/translate"))
+        .json(&body)
         .send()?
         .json()?;
 
     fn parse_result(res: Value) -> Option<String> {
-        let result = res.as_object()?.get("translation")?.as_str()?.to_string();
+        let result = res
+            .as_object()?
+            .get("translatedText")?
+            .as_str()?
+            .to_string();
 
         Some(result.replace("@@", "/"))
     }
-    if let Some(result) = parse_result(res) {
-        return Ok(result);
-    } else {
-        return Err("Response Parse Error".into());
+
+    match parse_result(res) {
+        Some(result) => return Ok(result),
+        _ => return Err("Response Parse Error".into()),
     }
 }
 
@@ -43,8 +54,12 @@ mod tests {
     #[test]
     fn try_request() {
         let mut needs = HashMap::new();
-        needs.insert("requestPath".to_string(), "lingva.pot-app.com".to_string());
-        let result = translate("你好 世界！", "auto", "en", needs).unwrap();
+        needs.insert(
+            "instance_url".to_string(),
+            "translate.argosopentech.com".to_string(),
+        );
+
+        let result = translate("这是一个自由的翻译 API", "zh", "en", needs).unwrap();
         println!("{result}");
     }
 }
