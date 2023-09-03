@@ -3,7 +3,16 @@
   "plugin_type": "translate",
   "icon": "libretranslate.png",
   "display": "LibreTranslate",
-  "needs": [{ "key": "instance_url", "display": "实例 URL" }],
+  "needs": [
+    {
+      "key": "instance_url",
+      "display": "实例 URL"
+    },
+    {
+      "key": "api_key",
+      "display": "API 密钥 (可选)"
+    }
+  ],
   "language": {
     "auto": "auto",
     "zh_cn": "zh",

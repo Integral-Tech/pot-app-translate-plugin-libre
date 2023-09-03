@@ -12,8 +12,7 @@ pub fn translate(
     let client = reqwest::blocking::ClientBuilder::new().build()?;
 
     let url = match needs.get("instance_url") {
-        Some(_) => {
-            let raw_url = needs.get("instance_url").unwrap();
+        Some(raw_url) => {
             if !raw_url.starts_with("http") {
                 format!("https://{raw_url}")
             } else {
@@ -32,6 +31,10 @@ pub fn translate(
     body.insert("source", from);
     body.insert("target", to);
 
+    if let Some(api_key) = needs.get("api_key") {
+        body.insert("api_key", api_key);
+    } // Optional API Key
+
     let res: Value = client
         .post(format!("{url}/translate"))
         .json(&body)
@@ -45,12 +48,12 @@ pub fn translate(
             .as_str()?
             .to_string();
 
-        Some(result.replace("@@", "/"))
+        Some(result)
     }
 
     match parse_result(res) {
-        Some(result) => return Ok(result),
-        _ => return Err("Response Parse Error".into()),
+        Some(result) => Ok(result),
+        _ => Err("Response Parse Error".into()),
     }
 }
 
