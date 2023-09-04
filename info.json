@@ -1,6 +1,7 @@
 {
-  "id": "[plugin].com.pot-app.libretranslate",
+  "id": "[plugin].cn.org.integral.libre",
   "plugin_type": "translate",
+  "homepage": "https://github.com/Integral-Tech/pot-app-translate-plugin-libre/",
   "icon": "libretranslate.png",
   "display": "LibreTranslate",
   "needs": [
