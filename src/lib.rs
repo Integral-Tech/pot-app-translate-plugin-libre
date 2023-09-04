@@ -1,6 +1,6 @@
 use serde_json::Value;
-use std::collections::HashMap;
-use std::error::Error;
+use std::{collections::HashMap, error::Error};
+use log;
 
 #[no_mangle]
 pub fn translate(
@@ -21,7 +21,7 @@ pub fn translate(
         }
 
         None => {
-            println!("Instance URL is not specified, use translate.argosopentech.com");
+	    log::debug!("Instance URL is not specified, use translate.argosopentech.com");
             String::from("https://translate.argosopentech.com/")
         }
     };
