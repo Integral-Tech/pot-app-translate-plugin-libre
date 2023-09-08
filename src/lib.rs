@@ -8,7 +8,7 @@ pub fn translate(
     from: &str,                     // Source Language
     to: &str,                       // Target Language
     needs: HashMap<String, String>, // Other arguments defined in info.json
-) -> Result<String, Box<dyn Error>> {
+) -> Result<Value, Box<dyn Error>> {
     let client = reqwest::blocking::ClientBuilder::new().build()?;
 
     let url = match needs.get("instance_url") {
@@ -52,7 +52,7 @@ pub fn translate(
     }
 
     match parse_result(res) {
-        Some(result) => Ok(result),
+        Some(result) => Ok(Value::String(result)),
         _ => Err("Response Parse Error".into()),
     }
 }
