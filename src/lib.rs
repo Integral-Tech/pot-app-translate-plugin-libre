@@ -69,7 +69,7 @@ mod tests {
             "translate.argosopentech.com".to_string(),
         );
 
-        let result = translate("这是一个自由的翻译 API", "zh", "en", needs).unwrap();
+        let result = translate("这是一个自由的翻译 API", "zh", "en", "zh", needs).unwrap();
         println!("{result}");
     }
 }
