@@ -7,6 +7,7 @@ pub fn translate(
     text: &str,                     // Text to be translated
     from: &str,                     // Source Language
     to: &str,                       // Target Language
+    detect: &str,                   // Detected Language
     needs: HashMap<String, String>, // Other arguments defined in info.json
 ) -> Result<Value, Box<dyn Error>> {
     let client = reqwest::blocking::ClientBuilder::new().build()?;
