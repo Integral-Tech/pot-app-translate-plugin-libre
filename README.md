@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Integral <integral@member.fsf.org>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
 # Pot-App 翻译 LibreTranslate 插件
 
 中文 | [English](https://github.com/Integral-Tech/pot-app-libretranslate/blob/main/README_EN.md)

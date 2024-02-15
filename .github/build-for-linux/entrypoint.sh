@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2024 Integral <integral@member.fsf.org>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 rustup target add "$INPUT_TARGET"
 rustup toolchain install --force-non-host "$INPUT_TOOLCHAIN"
 apt-get install pkg-config
