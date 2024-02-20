@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 # LibreTranslate Plugin for Pot-App
 
-[中文](https://github.com/Integral-Tech/pot-app-libretranslate) | English
+[中文](README.md) | English
 
 ## Available Instances
 
