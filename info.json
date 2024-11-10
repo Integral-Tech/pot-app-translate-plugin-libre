@@ -1,22 +1,25 @@
 {
-  "id": "[plugin].cn.org.integral.libre",
+  "id": "plugin.cn.org.integral.libre",
   "plugin_type": "translate",
-  "homepage": "https://github.com/Integral-Tech/pot-app-translate-plugin-libre/",
   "icon": "libretranslate.png",
   "display": "LibreTranslate",
+  "homepage": "https://github.com/Integral-Tech/pot-app-translate-plugin-libre",
   "needs": [
     {
-      "key": "instance_url",
-      "display": "实例 URL"
+      "key": "url",
+      "display": "实例 URL",
+      "type": "input"
     },
     {
-      "key": "api_key",
-      "display": "API 密钥 (可选)"
+      "key": "apiKey", 
+      "display": "API 密钥 (可选)",
+      "type": "input"
     }
   ],
   "language": {
     "auto": "auto",
     "zh_cn": "zh",
+    "zh_tw": "zt",
     "en": "en",
     "ja": "ja",
     "ko": "ko",
@@ -28,8 +31,31 @@
     "tr": "tr",
     "pt_pt": "pt",
     "pt_br": "pt",
+    "vi": "vi",
     "id": "id",
+    "th": "th",
+    "ms": "ms",
     "ar": "ar",
-    "hi": "hi"
+    "hi": "hi",
+    "fa": "fa",
+    "nb_no": "nb",
+    "nn_no": "nb",
+    "nl": "nl",
+    "pl": "pl",
+    "uk": "uk",
+    "el": "el",
+    "bg": "bg",
+    "cs": "cs",
+    "da": "da",
+    "et": "et",
+    "fi": "fi",
+    "hu": "hu",
+    "lt": "lt",
+    "lv": "lv",
+    "ro": "ro",
+    "sk": "sk",
+    "sl": "sl",
+    "sv": "sv",
+    "ur": "ur"
   }
 }
